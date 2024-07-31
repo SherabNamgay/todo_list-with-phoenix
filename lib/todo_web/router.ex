@@ -21,9 +21,11 @@ defmodule TodoWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", TodoWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", TodoWeb do
+    pipe_through :api
+
+    resources "/users", UserController, except: [:new, :edit]
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:todo, :dev_routes) do
